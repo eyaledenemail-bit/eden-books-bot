@@ -43,3 +43,77 @@ messages = [
     "🇮🇱 גאולה אישית מתחילה במעשה קטן של חסד. 🕊️ [Link]",
     "🇮🇱 אש, אדמה, אוויר ומים - ואתם האלמנט החמישי. 🔥 [Link]",
     "🇮🇱 הלוחם האמיתי כובש את פחדיו ובוחר באהבה. ⚔️ [Link]",
+    "🇮🇱 הנשמה שלכם זוכרת את המקום ממנו באה. 🌌 [Link]",
+    "🇮🇱 תפילה היא גשר בין הלב לממלכות העליונות. 🙏 [Link]",
+    "🇮🇱 העולם נוצר מתוך אהבה אינסופית אליכם. ❤️ [Link]",
+    "🇮🇱 האות א' - תחילת הכל, האחדות שבבריאה. 🌀 [Link]",
+    "🇮🇱 הצצה לממלכת המלכים שמעבר לשמש. ✨ [Link]",
+    "🇮🇱 האלמנט החמישי נמצא בתוככם. 🔥 [Link]",
+    "🇮🇱 כל פעולה היא זרע שנשתל בגן הבריאה. 🌱 [Link]",
+    "🇮🇱 הנשמה תמיד מחפשת את דרכה חזרה. 🌊 [Link]",
+    "🇮🇱 האור הגנוז מחכה לאלו שמעזים להביט פנימה. 🕯️ [Link]",
+    "🇮🇱 ירושלים היא שער רוחני לאאיחוד העולמות. 🏰 [Link]",
+    "🇮🇱 אהבה היא האנרגיה שהקימה את העולם. ❤️ [Link]",
+    "🇮🇱 הבורא מדבר אליכם דרך השקט. 🤫 [Link]",
+    "🇮🇱 לכל נשמה יש תפקיד ייחודי בתיקון העולם. ✨ [Link]",
+    "🇮🇱 עולם חסד ייבנה. כל מעשה טוב מקרב את הגאולה. 🤝 [Link]",
+    "🇮🇱 הגוף זמני, אבל האור שלכם נצחי. 🌟 [Link]",
+    "🇮🇱 השכינה שוכנת בכל מקום שבו יש אהבה. 🕊️ [Link]",
+    "🇮🇱 המוות הוא רק דלת לממלכה הבאה. המסע נמשך. 🚪 [Link]",
+    "🇮🇱 סיימנו חודש של גילויים, הגאולה רק מתחילה. ✨ [Link]"
+]
+
+def launch_debug_mode():
+    day_idx = (datetime.now().day - 1) % len(messages)
+    media_idx = (datetime.now().day - 1) % len(media_links)
+    
+    url = 'https://api.buffer.com/graphql'
+    headers = {'Authorization': f'Bearer {TOKEN}', 'Content-Type': 'application/json'}
+    
+    # מוטציה שכוללת בדיקת שגיאות מפורטת (userErrors)
+    mutation = """
+    mutation CreatePost($input: CreatePostInput!) {
+      createPost(input: $input) {
+        ... on PostActionSuccess {
+          post { id }
+        }
+        ... on PostActionError {
+          userErrors {
+            message
+          }
+        }
+      }
+    }
+    """
+    
+    print(f"--- מנסה לפרסם פוסט ליום {datetime.now().day} ---")
+    
+    for channel_id in CHANNEL_IDS:
+        variables = {
+            "input": {
+                "channelId": channel_id,
+                "text": messages[day_idx],
+                "schedulingType": "automatic",
+                "mode": "shareNow",
+                "assets": {
+                    "videos": [{"url": media_links[media_idx]}]
+                }
+            }
+        }
+        
+        try:
+            response = requests.post(url, json={'query': mutation, 'variables': variables}, headers=headers)
+            res_data = response.json()
+            create_post_data = res_data.get('data', {}).get('createPost', {})
+            
+            if 'post' in create_post_data:
+                print(f"✅ הצלחה! פוסט {create_post_data['post']['id']} שוגר לערוץ {channel_id}")
+            elif 'userErrors' in create_post_data:
+                print(f"❌ שגיאת תוכן בערוץ {channel_id}: {create_post_data['userErrors']}")
+            else:
+                print(f"❓ תשובה לא ברורה מהשרת עבור {channel_id}: {res_data}")
+        except Exception as e:
+            print(f"⚠️ תקלה טכנית: {e}")
+
+if __name__ == "__main__":
+    launch_debug_mode()
