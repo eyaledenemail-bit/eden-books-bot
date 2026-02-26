@@ -1,7 +1,7 @@
 import requests
 
 # הדבק כאן את המפתח שמופיע תחת eyaleden בצילום המסך שלך
-TOKEN = '699ffcd6c130d9cd2ddc81cd'
+TOKEN = 'UF3XfWBgBQ6p28kcw91dKGNBJ_rPP_NSyVK2sPzkaTu'
 
 def get_buffer_channels():
     url = 'https://api.buffer.com/graphql'
@@ -49,3 +49,4 @@ def get_buffer_channels():
 
 if __name__ == "__main__":
     get_buffer_channels()
+
