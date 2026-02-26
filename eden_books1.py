@@ -3,7 +3,7 @@ from datetime import datetime
 
 # --- הגדרות מערכת ---
 # הדבק את המפתח שלך (זה שנגמר ב-kaTu) בין הגרשיים למטה
-TOKEN = 'כאן_מדביקים_את_המפתח' 
+TOKEN = 'UF3XfWBgBQ6p28kcw91dKGNBJ_rPP_NSyVK2sPzkaTu' 
 
 CHANNEL_IDS = [
     '69a00b534be271803d6c88c4', # Facebook
@@ -89,3 +89,4 @@ def launch_and_detect():
 
 if __name__ == "__main__":
     launch_and_detect()
+
