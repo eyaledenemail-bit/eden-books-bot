@@ -1,7 +1,7 @@
 import requests
 from datetime import datetime
 
-# --- הגדרות מערכת (סופי) ---
+# --- הגדרות מערכת ---
 TOKEN = 'UF3XfWBgBQ6p28kcw91dKGNBJ_rPP_NSyVK2sPzkaTu' # המפתח שנגמר ב-kaTu
 ORG_ID = '699ffcd6c130d9cd2ddc81cd' # מזהה הארגון שלך
 CHANNEL_IDS = [
@@ -29,51 +29,53 @@ media_links = [
 
 # --- בנק הודעות (30 יום) ---
 messages = [
-    "🇮🇱 האם אתם מוכנים למסע חזרה הביתה? ✨ https://nivbook.co.il/product/%D7%9B%D7%95%D7%97-%D7%94%D7%97%D7%99%D7%99%D7%9D-%D7%94%D7%92%D7%90%D7%95%D7%9C%D7%94/\n🇺🇸 Ready for the journey home? 🌌 https://www.amazon.com/Power-Life-Redemption-Eyal-Eden/dp/B0FQMB2W4M\n🇪🇸 ¿Listo para el viaje a casa? ❤️ https://www.amazon.es/dp/B0GNHN9X1T",
-    "🇮🇱 מעבר לזמן ולמרחב, קיים שער לאור. ✨ [קישור]\n🇺🇸 Beyond time and space. 🌌 [Link]\n🇪🇸 Más allá del tiempo. ❤️ [Link]",
-    "🇮🇱 הגיאומטריה המקודשת של הטבע. 🌸 [קישור]\n🇺🇸 Sacred geometry. 🌸 [Link]\n🇪🇸 La geometría sagrada. ❤️ [Link]",
-    "🇮🇱 הזמן אינו אויב, הוא הכלי לגדילה. ⏳ [קישור]\n🇺🇸 Time is a tool for growth. ⏳ [Link]\n🇪🇸 El tiempo es crecimiento. ❤️ [Link]",
-    "🇮🇱 האור בשמים הוא רק קצה הקרחון. ☀️ [קישור]\n🇺🇸 Light is the tip of the iceberg. 🌌 [Link]\n🇪🇸 La luz es la punta del iceberg. ❤️ [Link]",
-    "🇮🇱 שלוש הכוחות של הכלי המקודש. 💎 [קישור]\n🇺🇸 Three powers of the Sacred Vessel. 💎 [Link]\n🇪🇸 Los tres poderes de la Vasija. ❤️ [Link]",
-    "🇮🇱 הנשמה זורמת בנהר של אהבה. 🌊 [קישור]\n🇺🇸 The soul flows in love. 🌊 [Link]\n🇪🇸 El alma fluye en amor. ❤️ [Link]",
-    "🇮🇱 איחוד המלך והמלכה. 👑 [קישור]\n🇺🇸 Union of King and Queen. 👑 [Link]\n🇪🇸 Unión del Rey y la Reina. ❤️ [Link]",
-    "🇮🇱 כל נשמה היא יהלום נדיר. 💎 [קישור]\n🇺🇸 Every soul is a diamond. 💎 [Link]\n🇪🇸 Cada alma es un diamante. ❤️ [Link]",
-    "🇮🇱 גאולה מתחילה בחסד. 🕊️ [קישור]\n🇺🇸 Redemption starts with kindness. 🕊️ [Link]\n🇪🇸 La redención nace de la bondad. ❤️ [Link]",
-    "🇮🇱 אתם האלמנט החמישי. 🔥 [קישור]\n🇺🇸 You are the fifth element. 🔥 [Link]\n🇪🇸 Eres el quinto elemento. ❤️ [Link]",
-    "🇮🇱 הלוחם בוחר באהבה. ⚔️ [קישור]\n🇺🇸 The warrior chooses love. ⚔️ [Link]\n🇪🇸 El guerrero elige el amor. ❤️ [Link]",
-    "🇮🇱 הנשמה זוכרת את מקורה. 🌌 [קישור]\n🇺🇸 The soul remembers its home. 🌌 [Link]\n🇪🇸 El alma recuerda su origen. ❤️ [Link]",
-    "🇮🇱 תפילה היא גשר למלכות. 🙏 [קישור]\n🇺🇸 Prayer is a bridge. 🙏 [Link]\n🇪🇸 La oración es un puente. ❤️ [Link]",
-    "🇮🇱 העולם נוצר מאהבה אליכם. ❤️ [קישור]\n🇺🇸 The world was made for you. ❤️ [Link]\n🇪🇸 El mundo se creó por amor. ❤️ [Link]",
-    "🇮🇱 האות א' - תחילת הכל. 🌀 [קישור]\n🇺🇸 Aleph - the beginning. 🌀 [Link]\n🇪🇸 Alef - el principio. ❤️ [Link]",
-    "🇮🇱 ממלכת המלכים שמעבר לשמש. ✨ [קישור]\n🇺🇸 Kingdom beyond the sun. ✨ [Link]\n🇪🇸 El Reino más allá del sol. ❤️ [Link]",
-    "🇮🇱 האלמנט החמישי בתוככם. 🔥 [קישור]\n🇺🇸 Fifth element is within. 🔥 [Link]\n🇪🇸 El quinto elemento está en ti. ❤️ [Link]",
-    "🇮🇱 פעולה היא זרע בבריאה. 🌱 [קישור]\n🇺🇸 Action is a seed. 🌱 [Link]\n🇪🇸 La acción es una semilla. ❤️ [Link]",
-    "🇮🇱 הנשמה מחפשת את דרכה. 🌊 [קישור]\n🇺🇸 Soul seeks its way. 🌊 [Link]\n🇪🇸 El alma busca su camino. ❤️ [Link]",
-    "🇮🇱 האור הגנוז בפנים. 🕯️ [קישור]\n🇺🇸 Hidden light within. 🕯️ [Link]\n🇪🇸 La luz oculta interior. ❤️ [Link]",
-    "🇮🇱 ירושלים - שער העולמות. 🏰 [קישור]\n🇺🇸 Jerusalem - gate of worlds. 🏰 [Link]\n🇪🇸 Jerusalén - puerta de mundos. ❤️ [Link]",
-    "🇮🇱 אהבה הקימה את העולם. ❤️ [קישור]\n🇺🇸 Love built the world. ❤️ [Link]\n🇪🇸 El amor construyó el mundo. ❤️ [Link]",
-    "🇮🇱 הקשיבו לשקט. 🤫 [קישור]\n🇺🇸 Listen to the silence. 🤫 [Link]\n🇪🇸 Escucha el silencio. ❤️ [Link]",
-    "🇮🇱 תפקידכם בתיקון העולם. ✨ [קישור]\n🇺🇸 Your role in repair. ✨ [Link]\n🇪🇸 Tu papel en la reparación. ❤️ [Link]",
-    "🇮🇱 עולם חסד ייבנה. 🤝 [קישור]\n🇺🇸 A world of kindness. 🤝 [Link]\n🇪🇸 Un mundo de bondad. ❤️ [Link]",
-    "🇮🇱 האור שלכם נצחי. 🌟 [קישור]\n🇺🇸 Your light is eternal. 🌟 [Link]\n🇪🇸 Tu luz es eterna. ❤️ [Link]",
-    "🇮🇱 השכינה שוכנת באהבה. 🕊️ [קישור]\n🇺🇸 Divine Presence is in love. 🕊️ [Link]\n🇪🇸 La Presencia Divina es amor. ❤️ [Link]",
-    "🇮🇱 המוות הוא דלת למסע. 🚪 [קישור]\n🇺🇸 Death is a door. 🚪 [Link]\n🇪🇸 La muerte es una puerta. ❤️ [Link]",
-    "🇮🇱 הגאולה רק מתחילה. ✨ [קישור]\n🇺🇸 Redemption is beginning. ✨ [Link]\n🇪🇸 La redención comienza. ❤️ [Link]"
+    "🇮🇱 האם אתם מוכנים למסע חזרה הביתה, אל מקור הנשמה? ✨ https://nivbook.co.il/product/%D7%9B%D7%95%D7%97-%D7%94%D7%97%D7%99%D7%99%D7%9D-%D7%94%D7%92%D7%90%D7%95%D7%9C%D7%94/\n🇺🇸 Are you ready for the journey back home? 🌌 https://www.amazon.com/Power-Life-Redemption-Eyal-Eden/dp/B0FQMB2W4M\n🇪🇸 ¿Estás listo para el viaje de regreso a casa? ❤️ https://www.amazon.es/dp/B0GNHN9X1T",
+    "🇮🇱 מעבר לזמן ולמרחב, קיים שער לעולם שכולו אור. ✨ https://nivbook.co.il/product/%D7%9B%D7%95%D7%97-%D7%94%D7%97%D7%99%D7%99%D7%9D-%D7%94%D7%92%D7%90%D7%95%D7%9C%D7%94/\n🇺🇸 Beyond time and space. 🌌 https://www.amazon.com/Power-Life-Redemption-Eyal-Eden/dp/B0FQMB2W4M\n🇪🇸 Más allá del tiempo y el espacio. ❤️ https://www.amazon.es/dp/B0GNHN9X1T",
+    "🇮🇱 הגיאומטריה המקודשת של הטבע היא המפה של הלב. 🌸 https://nivbook.co.il/product/%D7%9B%D7%95%D7%97-%D7%94%D7%97%D7%99%D7%99%D7%9D-%D7%94%D7%92%D7%90%D7%95%D7%9C%D7%94/\n🇺🇸 Sacred geometry is the map of the heart. 🌸 https://www.amazon.com/Power-Life-Redemption-Eyal-Eden/dp/B0FQMB2W4M\n🇪🇸 La geometría sagrada es el mapa del corazón. ❤️ https://www.amazon.es/dp/B0GNHN9X1T",
+    "🇮🇱 הזמן אינו אויב, הוא הכלי שלנו לגדילה רגשית עמוקה. ⏳ [Link]\n🇺🇸 Time is our tool for deep emotional growth. ⏳ [Link]\n🇪🇸 El tiempo es nuestra herramienta de crecimiento. ❤️ [Link]",
+    "🇮🇱 האור שאתם רואים בשמים הוא רק קצה הקרחון של המציאות. ☀️ [Link]\n🇺🇸 The light you see is just the tip of the iceberg. 🌌 [Link]\n🇪🇸 La luz que ves es solo la punta del iceberg. ❤️ [Link]",
+    "🇮🇱 שלוש הכוחות של הכלי המקודש מחכים להתגלות בתוככם. 💎 [Link]\n🇺🇸 The three powers of the Sacred Vessel. 💎 [Link]\n🇪🇸 Los tres poderes de la Vasija Sagrada. ❤️ [Link]",
+    "🇮🇱 הנשמה זורמת בנהר נצחי של אהבה ובריאה. 🌊 [Link]\n🇺🇸 The soul flows in an eternal river of love. 🌊 [Link]\n🇪🇸 El alma fluye en un río eterno de amor. ❤️ [Link]",
+    "🇮🇱 סיפור האהבה העתיק ביותר ביקום – איחוד המלך והמלכה. 👑 [Link]\n🇺🇸 The oldest love story – the King and Queen. 👑 [Link]\n🇪🇸 La historia de amor más antigua. ❤️ [Link]",
+    "🇮🇱 כל נשמה היא יהלום נדיר בכתרו של הבורא. 💎 [Link]\n🇺🇸 Every soul is a rare diamond. 💎 [Link]\n🇪🇸 Cada alma es un diamante raro. ❤️ [Link]",
+    "🇮🇱 גאולה אישית מתחילה במעשה אחד קטן של חסד. 🕊️ [Link]\n🇺🇸 Personal redemption begins with kindness. 🕊️ [Link]\n🇪🇸 La redención comienza con la bondad. ❤️ [Link]",
+    "🇮🇱 אש, אדמה, אוויר ומים – ואתם, האלמנט החמישי. 🔥 [Link]\n🇺🇸 Fire, Earth, Air, and Water – you are the fifth. 🔥 [Link]\n🇪🇸 Fuego, Tierra, Aire y Agua – eres el quinto. ❤️ [Link]",
+    "🇮🇱 הלוחם האמיתי הוא זה שכובש את פחדיו ובוחר באהבה. ⚔️ [Link]\n🇺🇸 The true warrior conquers fear and chooses love. ⚔️ [Link]\n🇪🇸 El verdadero guerrero elige el amor. ❤️ [Link]",
+    "🇮🇱 הנשמה שלכם זוכרת את המקום ממנו באה. 🌌 [Link]\n🇺🇸 Your soul remembers where it came from. 🌌 [Link]\n🇪🇸 Tu alma recuerda de dónde vino. ❤️ [Link]",
+    "🇮🇱 תפילה היא גשר בין הלב האנושי לממלכות העליונות. 🙏 [Link]\n🇺🇸 Prayer is a bridge to the higher realms. 🙏 [Link]\n🇪🇸 La oración es un puente a los reinos superiores. ❤️ [Link]",
+    "🇮🇱 העולם נוצר מתוך אהבה אינסופית אליכם. ❤️ [Link]\n🇺🇸 The world was created out of infinite love for you. ❤️ [Link]\n🇪🇸 El mundo fue creado por amor a ti. ❤️ [Link]",
+    "🇮🇱 האות א' - תחילת הכל, האחדות שבין הבורא לבריאה. 🌀 [Link]\n🇺🇸 Aleph - the beginning of everything. 🌀 [Link]\n🇪🇸 Alef - el principio de todo. ❤️ [Link]",
+    "🇮🇱 הצצה לממלכת המלכים שמעבר לשמש. שם הכל התחיל. ✨ [Link]\n🇺🇸 A glimpse into the Kingdom beyond the sun. ✨ [Link]\n🇪🇸 Una mirada al Reino más allá del sol. ❤️ [Link]",
+    "🇮🇱 האם אתם מכירים את האלמנט החמישי? הוא נמצא בתוככם. 🔥 [Link]\n🇺🇸 Do you know the fifth element? It's within you. 🔥 [Link]\n🇪🇸 ¿Conoces el quinto elemento? Está en ti. ❤️ [Link]",
+    "🇮🇱 כל פעולה שלכם היא זרע שנשתל בגן הבריאה. 🌱 [Link]\n🇺🇸 Every action is a seed in the garden of creation. 🌱 [Link]\n🇪🇸 Cada acción es una semilla de creación. ❤️ [Link]",
+    "🇮🇱 כמו מים שזורמים לים, הנשמה תמיד מחפשת את דרכה. 🌊 [Link]\n🇺🇸 Like water to the sea, the soul seeks its way. 🌊 [Link]\n🇪🇸 Como el agua al mar, el alma busca su camino. ❤️ [Link]",
+    "🇮🇱 האור הגנוז מחכה לאלו שמעזים להביט פנימה. 🕯️ [Link]\n🇺🇸 The hidden light awaits those who look within. 🕯️ [Link]\n🇪🇸 La luz oculta espera a quienes miran adentro. ❤️ [Link]",
+    "🇮🇱 ירושלים היא שער רוחני לאיחוד העולמות. 🏰 [Link]\n🇺🇸 Jerusalem is a spiritual gate. 🏰 [Link]\n🇪🇸 Jerusalén es una puerta espiritual. ❤️ [Link]",
+    "🇮🇱 אהבה היא האנרגיה שהקימה את העולם. ❤️ [Link]\n🇺🇸 Love is the energy that built the world. ❤️ [Link]\n🇪🇸 El amor es la energía que construyó el mundo. ❤️ [Link]",
+    "🇮🇱 הבורא מדבר אליכם דרך השקט. האם אתם מקשיבים? 🤫 [Link]\n🇺🇸 The Creator speaks through the silence. 🤫 [Link]\n🇪🇸 El Creadור te habla en el silencio. ❤️ [Link]",
+    "🇮🇱 לכל נשמה יש תפקיד ייחודי בתיקון העולם. ✨ [Link]\n🇺🇸 Every soul has a role in repairing the world. ✨ [Link]\n🇪🇸 Cada alma tiene un papel en la reparación. ❤️ [Link]",
+    "🇮🇱 עולם חסד ייבנה. כל מעשה טוב מקרב את הגאולה. 🤝 [Link]\n🇺🇸 A world of kindness brings redemption closer. 🤝 [Link]\n🇪🇸 Un mundo de bondad acerca la redención. ❤️ [Link]",
+    "🇮🇱 הגוף זמני, אבל האור שלכם נצחי. 🌟 [Link]\n🇺🇸 The body is temporary, but your light is eternal. 🌟 [Link]\n🇪🇸 El cuerpo es temporal, tu luz es eterna. ❤️ [Link]",
+    "🇮🇱 השכינה שוכנת בכל מקום שבו יש אהבה ואמת. 🕊️ [Link]\n🇺🇸 The Divine Presence dwells where there is love. 🕊️ [Link]\n🇪🇸 La Presencia Divina mora en el amor. ❤️ [Link]",
+    "🇮🇱 המוות הוא רק דלת לממלכה הבאה. המסע נמשך. 🚪 [Link]\n🇺🇸 Death is only a door. The journey continues. 🚪 [Link]\n🇪🇸 La muerte es solo una puerta al siguiente reino. ❤️ [Link]",
+    "🇮🇱 סיימנו חודש של גילויים, אבל הגאולה רק מתחילה. ✨ [Link]\n🇺🇸 A month of discovery. Redemption begins. ✨ [Link]\n🇪🇸 Un mes de descubrimientos. Comienza la redención. ❤️ [Link]"
 ]
 
-def launch_final():
+def launch_production():
     day_idx = (datetime.now().day - 1) % len(messages)
     media_idx = (datetime.now().day - 1) % len(media_links)
     
     url = 'https://api.buffer.com/graphql'
     headers = {'Authorization': f'Bearer {TOKEN}', 'Content-Type': 'application/json'}
     
-    # תיקון המוטציה: מבקשים 'post { id }' במקום 'success'
+    # התיקון המבוקש: שימוש ב-Inline Fragment (... on PostActionSuccess)
     mutation = """
     mutation CreatePost($input: CreatePostInput!) {
       createPost(input: $input) {
-        post {
-          id
+        ... on PostActionSuccess {
+          post {
+            id
+          }
         }
       }
     }
@@ -94,14 +96,18 @@ def launch_final():
         try:
             response = requests.post(url, json={'query': mutation, 'variables': variables}, headers=headers)
             res_data = response.json()
-            # בודקים אם חזר ID של פוסט
-            if 'data' in res_data and res_data['data']['createPost'].get('post'):
-                post_id = res_data['data']['createPost']['post']['id']
-                print(f"✅ הצלחה! פוסט {post_id} עלה לערוץ {channel_id}")
+            
+            # בדיקת הצלחה בפורמט החדש
+            if 'data' in res_data and 'createPost' in res_data['data']:
+                post_data = res_data['data']['createPost']
+                if 'post' in post_data:
+                    print(f"✅ הצלחה! פוסט {post_data['post']['id']} עלה לערוץ {channel_id}")
+                else:
+                    print(f"❌ שגיאה מבנית או דחייה בערוץ {channel_id}: {res_data}")
             else:
-                print(f"❌ שגיאה בערוץ {channel_id}: {res_data}")
+                print(f"❌ שגיאת שרת בערוץ {channel_id}: {res_data}")
         except Exception as e:
             print(f"⚠️ תקלה טכנית: {e}")
 
 if __name__ == "__main__":
-    launch_final()
+    launch_production()
