@@ -66,7 +66,51 @@ messages = [
     # יום 15: הבריאה מתוך אהבה
     "🇮🇱 העולם לא נוצר במקרה, הוא נוצר מתוך אהבה אינסופית אליכם. ❤️ [קישור]\n🇺🇸 The world was not created by chance; it was created out of infinite love for you. ❤️ [Link]\n🇪🇸 El mundo no fue creado por casualidad; fue creado por un amor infinito hacia ti. ❤️ [Link]",
 
-    # פוסטים 16-30 ימשיכו לגוון בין המסרים על האות א', סודות המלכות, והתקשור הרוחני של אייל עדן עם הבורא.
+    # יום 16: כוחה של האות א'
+    "🇮🇱 האות א' - תחילת הכל, האחדות שבין הבורא לבריאה. 🌀 [קישור]\n🇺🇸 The letter Aleph - the beginning of everything, the unity between Creator and creation. 🌀 [Link]\n🇪🇸 La letra Alef: el principio de todo, la unidad entre el Creador y la creación. ❤️ [Link]",
+
+    # יום 17: המלכות העליונה
+    "🇮🇱 הצצה לממלכת המלכים שמעבר לשמש. שם הכל התחיל. ✨ [קישור]\n🇺🇸 A glimpse into the Kingdom of Kings beyond the sun. Where it all began. 🌌 [Link]\n🇪🇸 Una mirada al Reino de los Reyes más allá del sol. Donde todo comenzó. ❤️ [Link]",
+
+    # יום 18: חמשת האלמנטים
+    "🇮🇱 האם אתם מכירים את האלמנט החמישי? הוא נמצא בתוככם. 🔥💧💨🌱 [קישור]\n🇺🇸 Do you know the fifth element? It is within you. 🔥💧💨🌱 [Link]\n🇪🇸 ¿Conoces el quinto elemento? Está dentro de ti. ❤️ [Link]",
+
+    # יום 19: זרעי הבריאה
+    "🇮🇱 כל פעולה שלכם היא זרע שנשתל בגן הבריאה. בחרו באהבה. 🌱 [קישור]\n🇺🇸 Every action is a seed planted in the garden of creation. Choose love. 🌱 [Link]\n🇪🇸 Cada acción es una semilla plantada en el jardín de la creación. Elige el amor. ❤️ [Link]",
+
+    # יום 20: סוד המים והנשמה
+    "🇮🇱 כמו מים שזורמים לים, הנשמה תמיד מחפשת את דרכה חזרה למקור. 🌊 [קישור]\n🇺🇸 Like water flowing to the sea, the soul always seeks its way back to the source. 🌊 [Link]\n🇪🇸 Como el agua que fluye hacia el mar, el alma siempre busca su camino de regreso al origen. ❤️ [Link]",
+
+    # יום 21: האור הגנוז
+    "🇮🇱 האור הגנוז מחכה לאלו שמעזים להביט פנימה. 🕯️ [קישור]\n🇺🇸 The hidden light awaits those who dare to look within. 🕯️ [Link]\n🇪🇸 La luz oculta espera a quienes se atreven a mirar hacia adentro. ❤️ [Link]",
+
+    # יום 22: ירושלים של מעלה
+    "🇮🇱 ירושלים היא לא רק עיר, היא שער רוחני לאיחוד העולמות. 🏰 [קישור]\n🇺🇸 Jerusalem is not just a city; it is a spiritual gate for the union of worlds. 🏰 [Link]\n🇪🇸 Jerusalén no es solo una ciudad; es una puerta espiritual para la unión de los mundos. ❤️ [Link]",
+
+    # יום 23: האהבה ככוח בורא
+    "🇮🇱 אהבה היא האנרגיה שהקימה את העולם. הרגישו אותה. ❤️ [קישור]\n🇺🇸 Love is the energy that built the world. Feel it. ❤️ [Link]\n🇪🇸 El amor es la energía que construyó el mundo. Siéntela. ❤️ [Link]",
+
+    # יום 24: הקול הפנימי
+    "🇮🇱 הבורא מדבר אליכם דרך השקט. האם אתם מקשיבים? 🤫 [קישור]\n🇺🇸 The Creator speaks to you through the silence. Are you listening? 🌌 [Link]\n🇪🇸 El Creador te habla a través del silencio. ¿Estás escuchando? ❤️ [Link]",
+
+    # יום 25: המטרה האישית
+    "🇮🇱 לכל נשמה יש תפקיד ייחודי בתיקון העולם. מצאו את שלכם. ✨ [קישור]\n🇺🇸 Every soul has a unique role in repairing the world. Find yours. ✨ [Link]\n🇪🇸 Cada alma tiene un papel único en la reparación del mundo. Encuentra el tuyo. ❤️ [Link]",
+
+    # יום 26: חסד ורחמים
+    "🇮🇱 עולם חסד ייבנה. כל מעשה טוב מקרב את הגאולה. 🤝 [קישור]\n🇺🇸 A world of kindness will be built. Every good deed brings redemption closer. 🤝 [Link]\n🇪🇸 Un mundo de bondad será construido. Cada buena acción acerca la redención. ❤️ [Link]",
+
+    # יום 27: הנצחיות שלכם
+    "🇮🇱 הגוף זמני, אבל האור שלכם נצחי. אל תפחדו לזרוח. 🌟 [קישור]\n🇺🇸 The body is temporary, but your light is eternal. Don't be afraid to shine. 🌟 [Link]\n🇪🇸 El cuerpo es temporal, pero tu luz es eterna. No tengas miedo de brillar. ❤️ [Link]",
+
+    # יום 28: השכינה בינינו
+    "🇮🇱 השכינה שוכנת בכל מקום שבו יש אהבה ואמת. 🕊️ [קישור]\n🇺🇸 The Divine Presence dwells wherever there is love and truth. 🕊️ [Link]\n🇪🇸 La Presencia Divina mora dondequiera que haya amor y verdad. ❤️ [Link]",
+
+    # יום 29: המסע נמשך
+    "🇮🇱 המוות הוא רק דלת לממלכה הבאה. המסע לעולם לא נגמר. 🚪 [קישור]\n🇺🇸 Death is only a door to the next kingdom. The journey never ends. 🌌 [Link]\n🇪🇸 La muerte es solo una puerta al siguiente reino. El viaje nunca termina. ❤️ [Link]",
+
+    # יום 30: סיכום והתחלה חדשה
+    "🇮🇱 סיימנו חודש של גילויים, אבל הגאולה רק מתחילה. הצטרפו אלינו. ✨ [קישור]\n🇺🇸 We finished a month of discoveries, but redemption is just beginning. Join us. ✨ [Link]\n🇪🇸 Terminamos un mes de descubrimientos, pero la redención solo está comenzando. Únete a nosotros. ❤️ [Link]"
+    
     # ... (המשך הרשימה יכיל וריאציות על המסרים הללו)
 ]
 
@@ -87,3 +131,4 @@ def post_daily():
 if __name__ == "__main__":
 
     post_daily()
+
