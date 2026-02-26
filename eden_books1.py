@@ -10,14 +10,10 @@ CHANNEL_IDS = [
     '69a00cd24be271803d6c9595'  # Threads
 ]
 
-# נשתמש בתמונה אחת פשוטה לבדיקה (JPG) כדי לראות אם פייסבוק מאשרת
-TEST_IMAGE = "https://raw.githubusercontent.com/eyaledenemail-bit/eden-books-bot/main/cover.jpg" 
+# פוסט פשוט מאוד ללא קישורים או תמונות
+test_message = "בדיקת מערכת: כוח החיים - הגאולה. יום נפלא לכולם! ✨"
 
-messages = [
-    "🇮🇱 בדיקת מערכת: כוח החיים - הגאולה. ✨ https://nivbook.co.il/product/%D7%9B%D7%95%D7%97-%D7%9ה%D7%97%D7%99%D7%99%D7%9D-%D7%9ה%D7%92%D7%90%D7%95%D7%9C%D7%9ה/",
-]
-
-def launch_image_test():
+def launch_clean_test():
     url = 'https://api.buffer.com/graphql'
     headers = {'Authorization': f'Bearer {TOKEN}', 'Content-Type': 'application/json'}
     
@@ -25,23 +21,23 @@ def launch_image_test():
     mutation CreatePost($input: CreatePostInput!) {
       createPost(input: $input) {
         __typename
-        ... on PostActionSuccess { post { id } }
+        ... on PostActionSuccess {
+          post { id }
+        }
       }
     }
     """
     
-    print(f"--- מריץ בדיקת תמונות (Image Test) ---")
+    print(f"--- מריץ בדיקת טקסט נקי (Text-Only Test) ---")
     
     for channel_id in CHANNEL_IDS:
         variables = {
             "input": {
                 "channelId": channel_id,
-                "text": messages[0],
+                "text": test_message,
                 "schedulingType": "automatic",
-                "mode": "shareNow",
-                "assets": {
-                    "images": [{"url": TEST_IMAGE}] # שימוש ב-images במקום videos
-                }
+                "mode": "shareNow"
+                # הסרנו לגמרי את ה-assets (המדיה)
             }
         }
         
@@ -52,11 +48,12 @@ def launch_image_test():
             typename = result.get('__typename')
             
             if typename == 'PostActionSuccess':
-                print(f"✅ הצלחה בערוץ {channel_id}!")
+                print(f"✅ הצלחה בערוץ {channel_id}! הפוסט באוויר.")
             else:
                 print(f"❌ ערוץ {channel_id} עדיין מסרב. סטטוס: {typename}")
+                print(f"   פירוט מהשרת: {res_data}")
         except Exception as e:
-            print(f"⚠️ תקלה: {e}")
+            print(f"⚠️ תקלה טכנית: {e}")
 
 if __name__ == "__main__":
-    launch_image_test()
+    launch_clean_test()
