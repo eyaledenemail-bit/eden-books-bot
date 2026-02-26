@@ -1,12 +1,15 @@
 import requests
 from datetime import datetime
 
-# --- הגדרות גישה ---
-TOKEN = 'UF3XfWBgBQ6p28kcw91dKGNBJ_rPP_NSyVK2sPzkaTu' # המפתח שמסתיים ב-kaTu
+# --- הגדרות מערכת ---
+# הדבק את המפתח שלך (זה שנגמר ב-kaTu) בין הגרשיים בשורה למטה
+TOKEN = 'UF3XfWBgBQ6p28kcw91dKGNBJ_rPP_NSyVK2sPzkaTu' 
+
+ORG_ID = '699ffcd6c130d9cd2ddc81cd' # המזהה של הארגון שלך
 CHANNEL_IDS = [
     '69a00b534be271803d6c88c4', # Facebook
     '69a00b894be271803d6c8938', # Instagram
-    '69a00cd24be271803d6c9595'  # Threads
+    '69a00cd24be271803d6c9595'  # Threads (זה שכבר עובד!)
 ]
 
 # --- בנק מדיה (13 קבצים) ---
@@ -28,7 +31,7 @@ media_links = [
 
 # --- בנק הודעות (30 יום) ---
 messages = [
-    "🇮🇱 האם אתם מוכנים למסע חזרה הביתה? ✨ https://nivbook.co.il/product/%D7%9B%D7%95%D7%97-%D7%94%D7%97%D7%99%D7%99%D7%9D-%D7%94%D7%92%D7%90%D7%95%D7%9C%D7%94/\n🇺🇸 Ready for the journey home? 🌌 https://www.amazon.com/Power-Life-Redemption-Eyal-Eden/dp/B0FQMB2W4M\n🇪🇸 ¿Listo para el viaje a casa? ❤️ https://www.amazon.es/dp/B0GNHN9X1T",
+    "🇮🇱 האם אתם מוכנים למסע חזרה הביתה? ✨ https://nivbook.co.il/product/%D7%9B%D7%95%D7%97-%D7%9ה%D7%97%D7%99%D7%99%D7%9D-%D7%9ה%D7%92%D7%90%D7%95%D7%9C%D7%94/\n🇺🇸 Ready for the journey home? 🌌 https://www.amazon.com/Power-Life-Redemption-Eyal-Eden/dp/B0FQMB2W4M\n🇪🇸 ¿Listo para el viaje a casa? ❤️ https://www.amazon.es/dp/B0GNHN9X1T",
     "🇮🇱 מעבר לזמן ולמרחב, קיים שער לאור. ✨ [Link]",
     "🇮🇱 הגיאומטריה המקודשת של הטבע היא המפה של הלב. 🌸 [Link]",
     "🇮🇱 הזמן אינו אויב, הוא הכלי לגדילה רגשית. ⏳ [Link]",
@@ -40,68 +43,3 @@ messages = [
     "🇮🇱 גאולה אישית מתחילה במעשה קטן של חסד. 🕊️ [Link]",
     "🇮🇱 אש, אדמה, אוויר ומים - ואתם האלמנט החמישי. 🔥 [Link]",
     "🇮🇱 הלוחם האמיתי כובש את פחדיו ובוחר באהבה. ⚔️ [Link]",
-    "🇮🇱 הנשמה שלכם זוכרת את המקום ממנו באה. 🌌 [Link]",
-    "🇮🇱 תפילה היא גשר בין הלב לממלכות העליונות. 🙏 [Link]",
-    "🇮🇱 העולם נוצר מתוך אהבה אינסופית אליכם. ❤️ [Link]",
-    "🇮🇱 האות א' - תחילת הכל, האחדות שבבריאה. 🌀 [Link]",
-    "🇮🇱 הצצה לממלכת המלכים שמעבר לשמש. ✨ [Link]",
-    "🇮🇱 האלמנט החמישי נמצא בתוככם. 🔥 [Link]",
-    "🇮🇱 כל פעולה היא זרע שנשתל בגן הבריאה. 🌱 [Link]",
-    "🇮🇱 הנשמה תמיד מחפשת את דרכה חזרה. 🌊 [Link]",
-    "🇮🇱 האור הגנוז מחכה לאלו שמעזים להביט פנימה. 🕯️ [Link]",
-    "🇮🇱 ירושלים היא שער רוחני לאיחוד העולמות. 🏰 [Link]",
-    "🇮🇱 אהבה היא האנרגיה שהקימה את העולם. ❤️ [Link]",
-    "🇮🇱 הבורא מדבר אליכם דרך השקט. 🤫 [Link]",
-    "🇮🇱 לכל נשמה יש תפקיד ייחודי בתיקון העולם. ✨ [Link]",
-    "🇮🇱 עולם חסד ייבנה. כל מעשה טוב מקרב את הגאולה. 🤝 [Link]",
-    "🇮🇱 הגוף זמני, אבל האור שלכם נצחי. 🌟 [Link]",
-    "🇮🇱 השכינה שוכנת בכל מקום שבו יש אהבה. 🕊️ [Link]",
-    "🇮🇱 המוות הוא רק דלת לממלכה הבאה. המסע נמשך. 🚪 [Link]",
-    "🇮🇱 סיימנו חודש של גילויים, הגאולה רק מתחילה. ✨ [Link]"
-]
-
-def launch_production():
-    day_idx = (datetime.now().day - 1) % len(messages)
-    media_idx = (datetime.now().day - 1) % len(media_links)
-    
-    url = 'https://api.buffer.com/graphql'
-    headers = {'Authorization': f'Bearer {TOKEN}', 'Content-Type': 'application/json'}
-    
-    mutation = """
-    mutation CreatePost($input: CreatePostInput!) {
-      createPost(input: $input) {
-        ... on PostActionSuccess {
-          post { id }
-        }
-      }
-    }
-    """
-    
-    print(f"--- משגר קמפיין יומי: יום {datetime.now().day} ---")
-    
-    for channel_id in CHANNEL_IDS:
-        variables = {
-            "input": {
-                "channelId": channel_id,
-                "text": messages[day_idx],
-                "schedulingType": "automatic", #
-                "mode": "shareNow",            #
-                "assets": {
-                    "videos": [{"url": media_links[media_idx]}] #
-                }
-            }
-        }
-        
-        try:
-            response = requests.post(url, json={'query': mutation, 'variables': variables}, headers=headers)
-            res_data = response.json()
-            
-            if 'data' in res_data and res_data['data']['createPost']:
-                print(f"✅ הצלחה! הפוסט שוגר לערוץ {channel_id}")
-            else:
-                print(f"❌ שגיאה בערוץ {channel_id}: {res_data}")
-        except Exception as e:
-            print(f"⚠️ תקלה טכנית: {e}")
-
-if __name__ == "__main__":
-    launch_production()
