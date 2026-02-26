@@ -2,32 +2,36 @@ import requests
 
 TOKEN = 'jujSx245sEU_sJJl3w8rDpsNBqTBae9Ajr58GKSMa4X'
 
-def debug_buffer():
-    # הגדרת הכותרות עם המפתח שלך
-    headers = {'Authorization': f'Bearer {TOKEN}'}
+def final_debug():
+    # הוספת כותרות שמדמות דפדפן כדי למנוע חסימות של Buffer
+    headers = {
+        'Authorization': f'Bearer {TOKEN}',
+        'Accept': 'application/json',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+    }
     
-    print("--- שלב 1: בדיקת תקינות המפתח (User Info) ---")
-    user_url = "https://api.bufferapp.com/1/user.json"
-    user_res = requests.get(user_url, headers=headers)
-    print(f"סטטוס משתמש: {user_res.status_code}")
+    print("--- ניסיון חיבור סופי למערכת Buffer ---")
     
-    if user_res.status_code == 200:
-        print("המפתח תקין! ברוך הבא, " + user_res.json().get('name', 'משתמש'))
+    # ניסיון לבדוק את הפרופילים ישירות
+    url = "https://api.bufferapp.com/1/profiles.json"
+    
+    try:
+        response = requests.get(url, headers=headers, timeout=10)
+        print(f"סטטוס שרת: {response.status_code}")
         
-        print("\n--- שלב 2: משיכת מזהי הפרופילים (Profile IDs) ---")
-        profiles_url = "https://api.bufferapp.com/1/profiles.json"
-        prof_res = requests.get(profiles_url, headers=headers)
-        
-        if prof_res.status_code == 200:
-            profiles = prof_res.json()
+        if response.status_code == 200:
+            profiles = response.json()
+            print("הצלחה! המכונה מחוברת. אלו הפרופילים שלך:")
             for p in profiles:
-                print(f"רשת: {p['service']} | שם: {p['service_username']} | ID: {p['id']}")
+                print(f"- רשת: {p['service']} | שם משתמש: {p['service_username']} | ID: {p['id']}")
+        elif response.status_code == 401:
+            print("שגיאה 401: המפתח (Token) לא תקין או פג תוקף. צור מפתח חדש ב-Buffer.")
         else:
-            print(f"שגיאה במשיכת פרופילים: {prof_res.status_code}")
-            print(prof_res.text)
-    else:
-        print("נראה שיש בעיה במפתח הגישה (Token).")
-        print(f"תגובת השרת: {user_res.text}")
+            print(f"שגיאה {response.status_code}: השרת החזיר תשובה לא צפויה.")
+            print("תוכן השגיאה:", response.text)
+            
+    except requests.exceptions.RequestException as e:
+        print(f"שגיאת תקשורת: {e}")
 
 if __name__ == "__main__":
-    debug_buffer()
+    final_debug()
