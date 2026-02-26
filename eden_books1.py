@@ -1,77 +1,46 @@
 import requests
-from datetime import datetime
 
-# --- הגדרות מערכת (מעודכנות לפי המידע שחילצנו) ---
-TOKEN = 'UF3XfWBgBQ6p28kcw91dKGNBJ_rPP_NSyVK2sPzkaTu' # המפתח שנגמר ב-kaTu מהצילום שלך
-ORG_ID = '699ffcd6c130d9cd2ddc81cd' # ה-ID של הארגון מהצילום
-CHANNEL_IDS = [
-    '69a00b534be271803d6c88c4', # Facebook (Eyal Eden's Books)
-    '69a00b894be271803d6c8938', # Instagram (eyaleden)
-    '69a00cd24be271803d6c9595'  # Threads (eyaleden)
-]
+# המפתח שלך מהצילום (זה שנגמר ב-kaTu)
+TOKEN = 'UF3XfWBgBQ6p28kcw91dKGNBJ_rPP_NSyVK2sPzkaTu'
 
-# --- בנק מדיה ---
-media_links = [
-    "https://drive.google.com/uc?export=download&id=1yUzXKQIFDePnNuTNhaVj6c68sdnlK8SN",
-    "https://drive.google.com/uc?export=download&id=1apuf0UzMEQxZxudid0k0D4jLq1CnN_ap",
-    "https://drive.google.com/uc?export=download&id=1H4IDzt683V8MBaWgEIpbAmO4JPTJFi7W",
-    "https://drive.google.com/uc?export=download&id=1SqJI7NsEjba54C4EWO5gZlvnvNucwJgr",
-    "https://drive.google.com/uc?export=download&id=1qr9PrYh5j057vGD9MY7HX1UwXlRe2o_W",
-    "https://drive.google.com/uc?export=download&id=1YDtgOF5AN9FDrueujH_s0mZilA-TSizq",
-    "https://drive.google.com/uc?export=download&id=1ZUCC3UPJCf0MiwG9PY_vSr8c_24Ki2aG",
-    "https://drive.google.com/uc?export=download&id=1AeaQ_pEqqzuxwSQD9qPyWKZiCUqVAaHg",
-    "https://drive.google.com/uc?export=download&id=1D2G65cEAVfSlNAiLK1sksK6w_u0yugwg",
-    "https://drive.google.com/uc?export=download&id=1z-7viMXR-HT_Y413gA1Zk_Z6QKzSsqXQ",
-    "https://drive.google.com/uc?export=download&id=17FO7xqyctMsEdGBu3HH5QU92Nr5tJenZ",
-    "https://drive.google.com/uc?export=download&id=1bdM-Cb3x2afG3YIMLsqEPWJk6seWHJLK",
-    "https://drive.google.com/uc?export=download&id=16r8LEv57QBquxddCd6o89bpkhV0MSdAD"
-]
-
-# --- בנק הודעות (3 שפות משולבות) ---
-messages = [
-    "🇮🇱 האם אתם מוכנים למסע חזרה הביתה, אל מקור הנשמה? ✨ https://nivbook.co.il/product/%D7%9B%D7%95%D7%97-%D7%9ה%D7%97%D7%99%D7%99%D7%9D-%D7%9ה%D7%92%D7%90%D7%95%D7%9C%D7%94/\n🇺🇸 Are you ready for the journey back home? 🌌 https://www.amazon.com/Power-Life-Redemption-Eyal-Eden/dp/B0FQMB2W4M\n🇪🇸 ¿Estás listo para el viaje de regreso a casa? ❤️ https://www.amazon.es/dp/B0GNHN9X1T",
-    "🇮🇱 מעבר לזמן ולמרחב, קיים שער לעולם שכולו אור. ✨ [Link]\n🇺🇸 Beyond time and space. 🌌 [Link]\n🇪🇸 Más allá del tiempo. ❤️ [Link]"
-]
-
-def post_to_buffer_v4():
-    # בחירת תוכן לפי היום בחודש
-    day_idx = (datetime.now().day - 1) % len(messages)
-    media_idx = (datetime.now().day - 1) % len(media_links)
-    
+def discover_mutations():
     url = 'https://api.buffer.com/graphql'
     headers = {
         'Authorization': f'Bearer {TOKEN}',
         'Content-Type': 'application/json'
     }
     
-    # פקודת הפרסום המעודכנת ל-Beta API
-    mutation = """
-    mutation CreateUpdate($input: CreateUpdateInput!) {
-      createUpdate(input: $input) {
-        success
+    # שאילתת "אינטרוספקציה" - שואלת את השרת אילו מוטציות (פקודות) קיימות
+    query = """
+    query {
+      __schema {
+        mutationType {
+          fields {
+            name
+            description
+          }
+        }
       }
     }
     """
     
-    variables = {
-        "input": {
-            "organizationId": ORG_ID,
-            "channelIds": CHANNEL_IDS,
-            "text": messages[day_idx],
-            "media": {
-                "video": media_links[media_idx]
-            }
-        }
-    }
-    
-    print(f"--- מנסה לפרסם פוסט ליום {datetime.now().day} ---")
-    response = requests.post(url, json={'query': mutation, 'variables': variables}, headers=headers)
-    
-    print(f"סטטוס: {response.status_code}")
+    print("--- בודק אילו פקודות קיימות ב-API החדש של Buffer ---")
     try:
-        print(f"תשובה: {response.json()}")
-    except:
-        print(f"תשובה גולמית: {response.text}")
+        response = requests.post(url, json={'query': query}, headers=headers)
+        print(f"סטטוס שרת: {response.status_code}")
+        data = response.json()
+        
+        if 'data' in data and data['data']['__schema']['mutationType']:
+            mutations = data['data']['__schema']['mutationType']['fields']
+            print("\nהנה רשימת הפקודות שהשרת מכיר:")
+            for m in mutations:
+                print(f"- {m['name']}: {m['description']}")
+        else:
+            print("השרת לא החזיר רשימת פקודות. תשובה גולמית:")
+            print(data)
+            
+    except Exception as e:
+        print(f"שגיאה טכנית: {e}")
 
 if __name__ == "__main__":
-    post_to_buffer_v4()
+    discover_mutations()
