@@ -1,32 +1,38 @@
 import requests
 
-# וודא שאתה מעתיק לכאן את ה-Access Token (זה שמתחיל ב-1/)
-RAW_TOKEN = 'UF3XfWBgBQ6p28kcw91dKGNBJ_rPP_NSyVK2sPzkaTu'
+# העתק את המפתח מהצילום שלך (זה שמופיע תחת eyaleden) והדבק כאן
+TOKEN = 'UF3XfWBgBQ6p28kcw91dKGNBJ_rPP_NSyVK2sPzkaTu'
 
-def final_test():
-    # ניקוי רווחים מיותרים שעלולים להיכנס בהעתקה
-    token = RAW_TOKEN.strip()
+def get_profiles_graphql():
+    url = 'https://api.bufferapp.com/graphql'
+    headers = {'Authorization': f'Bearer {TOKEN}'}
     
-    # שימוש בכתובת המשתמש - הבדיקה הכי בסיסית שיש
-    url = f"https://api.bufferapp.com/1/user.json?access_token={token}"
+    # שאילתה בשפת GraphQL כדי לקבל את הפרופילים
+    query = """
+    query {
+      profiles {
+        id
+        service
+        service_username
+      }
+    }
+    """
     
-    print(f"--- בודק חיבור נקי למשתמש ---")
+    print("--- בודק חיבור למערכת ה-GraphQL החדשה ---")
     try:
-        # הוספת כותרת User-Agent כדי שהשרת יחשוב שאנחנו דפדפן
-        headers = {'User-Agent': 'Mozilla/5.0'}
-        response = requests.get(url, headers=headers, timeout=15)
-        
+        response = requests.post(url, json={'query': query}, headers=headers)
         print(f"סטטוס שרת: {response.status_code}")
         
-        if response.status_code == 200:
-            user_data = response.json()
-            print(f"הצלחה! המערכת מזהה את: {user_data.get('name')}")
-            print("עכשיו נסה להריץ שוב את הפקודה של הפרופילים.")
+        data = response.json()
+        if 'data' in data and data['data']['profiles']:
+            print("הצלחה! הנה ה-IDs המעודכנים שלך:")
+            for p in data['data']['profiles']:
+                print(f"רשת: {p['service']} | שם: {p['service_username']} | ID: {p['id']}")
         else:
-            print(f"השרת עדיין מחזיר שגיאה. תוכן: {response.text}")
+            print("שגיאה בתשובה מהשרת:", data)
             
     except Exception as e:
-        print(f"שגיאה טכנית: {e}")
+        print(f"תקלה טכנית: {e}")
 
 if __name__ == "__main__":
-    final_test()
+    get_profiles_graphql()
