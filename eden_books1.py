@@ -5,7 +5,6 @@ from datetime import datetime
 TOKEN = 'jujSx245sEU_sJJl3w8rDpsNBqTBae9Ajr58GKSMa4X'
 PROFILE_IDS = ['69a00b534be271803d6c88c4', '69a00b894be271803d6c8938', '69a00cd24be271803d6c9595']
 
-# קישורים ישירים למדיה שלך (סרטונים ותמונות)
 media_links = [
     "https://drive.google.com/uc?export=download&id=1yUzXKQIFDePnNuTNhaVj6c68sdnlK8SN",
     "https://drive.google.com/uc?export=download&id=1apuf0UzMEQxZxudid0k0D4jLq1CnN_ap",
@@ -22,55 +21,36 @@ media_links = [
     "https://drive.google.com/uc?export=download&id=16r8LEv57QBquxddCd6o89bpkhV0MSdAD"
 ]
 
-# בנק הודעות ל-30 יום (משולב 3 שפות)
 messages = [
-    "🇮🇱 האם אתם מוכנים למסע חזרה הביתה, אל מקור הנשמה? ✨ https://nivbook.co.il/product/%D7%9B%D7%95%D7%97-%D7%94%D7%97%D7%99%D7%99%D7%9D-%D7%94%D7%92%D7%90%D7%95%D7%9C%D7%94/\n🇺🇸 Are you ready for the journey back home? 🌌 https://www.amazon.com/Power-Life-Redemption-Eyal-Eden/dp/B0FQMB2W4M\n🇪🇸 ¿Estás listo para el viaje de regreso a casa? ❤️ https://www.amazon.es/dp/B0GNHN9X1T",
-    "🇮🇱 מעבר לזמן ולמרחב, קיים שער לעולם שכולו אור. ✨ https://nivbook.co.il/product/%D7%9B%D7%95%D7%97-%D7%94%D7%97%D7%99%D7%99%D7%9D-%D7%94%D7%92%D7%90%D7%95%D7%9C%D7%94/\n🇺🇸 Beyond time and space, there is a gate to a world of light. 🌌 https://www.amazon.com/Power-Life-Redemption-Eyal-Eden/dp/B0FQMB2W4M\n🇪🇸 Más allá del tiempo y el espacio, hay una puerta a un mundo de luz. ❤️ https://www.amazon.es/dp/B0GNHN9X1T",
-    "🇮🇱 הגיאומטריה המקודשת של הטבע היא המפה של הלב. 🌸 https://nivbook.co.il/product/%D7%9B%D7%95%D7%97-%D7%94%D7%97%D7%99%D7%99%D7%9D-%D7%94%D7%92%D7%90%D7%95%D7%9C%D7%94/\n🇺🇸 The sacred geometry of nature is the map of the heart. 🌸 https://www.amazon.com/Power-Life-Redemption-Eyal-Eden/dp/B0FQMB2W4M\n🇪🇸 La geometría sagrada de la naturaleza es el mapa del corazón. ❤️ https://www.amazon.es/dp/B0GNHN9X1T",
-    "🇮🇱 הזמן אינו אויב, הוא הכלי שלנו לגדילה רגשית עמוקה. ⏳ https://nivbook.co.il/product/%D7%9B%D7%95%D7%97-%D7%94%D7%97%D7%99%D7%99%D7%9D-%D7%94%D7%92%D7%90%D7%95%D7%9C%D7%94/\n🇺🇸 Time is not an enemy; it is our tool for deep emotional growth. ⏳ https://www.amazon.com/Power-Life-Redemption-Eyal-Eden/dp/B0FQMB2W4M\n🇪🇸 El tiempo no es un enemigo; es nuestra herramienta para el crecimiento emocional. ❤️ https://www.amazon.es/dp/B0GNHN9X1T",
-    "🇮🇱 האור שאתם רואים בשמים הוא רק קצה הקרחון של המציאות. ☀️ https://nivbook.co.il/product/%D7%9B%D7%95%D7%97-%D7%94%D7%97%D7%99%D7%99%D7%9D-%D7%94%D7%92%D7%90%D7%95%D7%9C%D7%94/\n🇺🇸 The light you see in the sky is just the tip of the iceberg. 🌌 https://www.amazon.com/Power-Life-Redemption-Eyal-Eden/dp/B0FQMB2W4M\n🇪🇸 La luz que ves en el cielo es solo la punta del iceberg. ❤️ https://www.amazon.es/dp/B0GNHN9X1T",
-    "🇮🇱 שלוש הכוחות של הכלי המקודש מחכים להתגלות בתוככם. 💎 https://nivbook.co.il/product/%D7%9B%D7%95%D7%97-%D7%94%D7%97%D7%99%D7%99%D7%9D-%D7%94%D7%92%D7%90%D7%95%D7%9C%D7%94/\n🇺🇸 The three powers of the Sacred Vessel are waiting to be revealed. 💎 https://www.amazon.com/Power-Life-Redemption-Eyal-Eden/dp/B0FQMB2W4M\n🇪🇸 Los tres poderes de la Vasija Sagrada te esperan. ❤️ https://www.amazon.es/dp/B0GNHN9X1T",
-    "🇮🇱 הנשמה זורמת בנהר נצחי של אהבה ובריאה. 🌊 https://nivbook.co.il/product/%D7%9B%D7%95%D7%97-%D7%94%D7%97%D7%99%D7%99%D7%9D-%D7%94%D7%92%D7%90%D7%95%D7%9C%D7%94/\n🇺🇸 The soul flows in an eternal river of love and creation. 🌊 https://www.amazon.com/Power-Life-Redemption-Eyal-Eden/dp/B0FQMB2W4M\n🇪🇸 El alma fluye en un río eterno de amor y creación. ❤️ https://www.amazon.es/dp/B0GNHN9X1T",
-    "🇮🇱 סיפור האהבה העתיק ביותר ביקום – איחוד המלך והמלכה. 👑 https://nivbook.co.il/product/%D7%9B%D7%95%D7%97-%D7%94%D7%97%D7%99%D7%99%D7%9D-%D7%94%D7%92%D7%90%D7%95%D7%9C%D7%94/\n🇺🇸 The oldest love story – the union of the King and Queen. 👑 https://www.amazon.com/Power-Life-Redemption-Eyal-Eden/dp/B0FQMB2W4M\n🇪🇸 La historia de amor más antigua: la unión del Rey y la Reina. ❤️ https://www.amazon.es/dp/B0GNHN9X1T",
-    "🇮🇱 כל נשמה היא יהלום נדיר בכתרו של הבורא. 💎 https://nivbook.co.il/product/%D7%9B%D7%95%D7%97-%D7%94%D7%97%D7%99%D7%99%D7%9D-%D7%94%D7%92%D7%90%D7%95%D7%9C%D7%94/\n🇺🇸 Every soul is a rare diamond in the Creator's crown. 💎 https://www.amazon.com/Power-Life-Redemption-Eyal-Eden/dp/B0FQMB2W4M\n🇪🇸 Cada alma es un diamante raro en la corona del Creador. ❤️ https://www.amazon.es/dp/B0GNHN9X1T",
-    "🇮🇱 גאולה אישית מתחילה במעשה אחד קטן של חסד. 🕊️ https://nivbook.co.il/product/%D7%9B%D7%95%D7%97-%D7%94%D7%97%D7%99%D7%99%D7%9D-%D7%94%D7%92%D7%90%D7%95%D7%9C%D7%94/\n🇺🇸 Personal redemption begins with one small act of kindness. 🕊️ https://www.amazon.com/Power-Life-Redemption-Eyal-Eden/dp/B0FQMB2W4M\n🇪🇸 La redención personal comienza con un acto de bondad. ❤️ https://www.amazon.es/dp/B0GNHN9X1T",
-    "🇮🇱 אש, אדמה, אוויר ומים – ואתם, האלמנט החמישי. 🔥 https://nivbook.co.il/product/%D7%9B%D7%95%D7%97-%D7%94%D7%97%D7%99%D7%99%D7%9D-%D7%94%D7%92%D7%90%D7%95%D7%9C%D7%94/\n🇺🇸 Fire, Earth, Air, and Water – and you, the fifth element. 🔥 https://www.amazon.com/Power-Life-Redemption-Eyal-Eden/dp/B0FQMB2W4M\n🇪🇸 Fuego, Tierra, Aire y Agua – y tú, el quinto elemento. ❤️ https://www.amazon.es/dp/B0GNHN9X1T",
-    "🇮🇱 הלוחם האמיתי הוא זה שכובש את פחדיו ובוחר באהבה. ⚔️ https://nivbook.co.il/product/%D7%9B%D7%95%D7%97-%D7%94%D7%97%D7%99%D7%99%D7%9D-%D7%94%D7%92%D7%90%D7%95%D7%9C%D7%94/\n🇺🇸 The true warrior conquers fear and chooses love. ⚔️ https://www.amazon.com/Power-Life-Redemption-Eyal-Eden/dp/B0FQMB2W4M\n🇪🇸 El verdadero guerrero conquista el miedo y elige el amor. ❤️ https://www.amazon.es/dp/B0GNHN9X1T",
-    "🇮🇱 הנשמה שלכם זוכרת את המקום ממנו באה. 🌌 https://nivbook.co.il/product/%D7%9B%D7%95%D7%97-%D7%94%D7%97%D7%99%D7%99%D7%9D-%D7%94%D7%92%D7%90%D7%95%D7%9C%D7%94/\n🇺🇸 Your soul remembers where it came from. 🌌 https://www.amazon.com/Power-Life-Redemption-Eyal-Eden/dp/B0FQMB2W4M\n🇪🇸 Tu alma recuerda de dónde vino. ❤️ https://www.amazon.es/dp/B0GNHN9X1T",
-    "🇮🇱 תפילה היא גשר בין הלב האנושי לממלכות העליונות. 🙏 https://nivbook.co.il/product/%D7%9B%D7%95%D7%97-%D7%94%D7%97%D7%99%D7%99%D7%9D-%D7%94%D7%92%D7%90%D7%95%D7%9C%D7%94/\n🇺🇸 Prayer is a bridge to the higher realms. 🙏 https://www.amazon.com/Power-Life-Redemption-Eyal-Eden/dp/B0FQMB2W4M\n🇪🇸 La oración es un puente hacia los reinos superiores. ❤️ https://www.amazon.es/dp/B0GNHN9X1T",
-    "🇮🇱 העולם נוצר מתוך אהבה אינסופית אליכם. ❤️ https://nivbook.co.il/product/%D7%9B%D7%95%D7%97-%D7%94%D7%97%D7%99%D7%99%D7%9D-%D7%94%D7%92%D7%90%D7%95%D7%9C%D7%94/\n🇺🇸 The world was created out of infinite love for you. ❤️ https://www.amazon.com/Power-Life-Redemption-Eyal-Eden/dp/B0FQMB2W4M\n🇪🇸 El mundo fue creado por un amor infinito hacia ti. ❤️ https://www.amazon.es/dp/B0GNHN9X1T",
-    "🇮🇱 האות א' - תחילת הכל, האחדות שבין הבורא לבריאה. 🌀 https://nivbook.co.il/product/%D7%9B%D7%95%D7%97-%D7%94%D7%97%D7%99%D7%99%D7%9D-%D7%94%D7%92%D7%90%D7%95%D7%9C%D7%94/\n🇺🇸 The letter Aleph - the beginning of everything. 🌀 https://www.amazon.com/Power-Life-Redemption-Eyal-Eden/dp/B0FQMB2W4M\n🇪🇸 La letra Alef: el principio de todo. ❤️ https://www.amazon.es/dp/B0GNHN9X1T",
-    "🇮🇱 הצצה לממלכת המלכים שמעבר לשמש. שם הכל התחיל. ✨ https://nivbook.co.il/product/%D7%9B%D7%95%D7%97-%D7%94%D7%97%D7%99%D7%99%D7%9D-%D7%94%D7%92%D7%90%D7%95%D7%9C%D7%94/\n🇺🇸 A glimpse into the Kingdom of Kings beyond the sun. 🌌 https://www.amazon.com/Power-Life-Redemption-Eyal-Eden/dp/B0FQMB2W4M\n🇪🇸 Una mirada al Reino de los Reyes más allá del sol. ❤️ https://www.amazon.es/dp/B0GNHN9X1T",
-    "🇮🇱 האם אתם מכירים את האלמנט החמישי? הוא נמצא בתוככם. 🔥 https://nivbook.co.il/product/%D7%9B%D7%95%D7%97-%D7%94%D7%97%D7%99%D7%99%D7%9D-%D7%94%D7%92%D7%90%D7%95%D7%9C%D7%94/\n🇺🇸 Do you know the fifth element? It is within you. 🔥 https://www.amazon.com/Power-Life-Redemption-Eyal-Eden/dp/B0FQMB2W4M\n🇪🇸 ¿Conoces el quinto elemento? Está dentro de ti. ❤️ https://www.amazon.es/dp/B0GNHN9X1T",
-    "🇮🇱 כל פעולה שלכם היא זרע שנשתל בגן הבריאה. 🌱 https://nivbook.co.il/product/%D7%9B%D7%95%D7%97-%D7%94%D7%97%D7%99%D7%99%D7%9D-%D7%94%D7%92%D7%90%D7%95%D7%9C%D7%94/\n🇺🇸 Every action is a seed planted in the garden of creation. 🌱 https://www.amazon.com/Power-Life-Redemption-Eyal-Eden/dp/B0FQMB2W4M\n🇪🇸 Cada acción es una semilla en el jardín de la creación. ❤️ https://www.amazon.es/dp/B0GNHN9X1T",
-    "🇮🇱 כמו מים שזורמים לים, הנשמה תמיד מחפשת את דרכה. 🌊 https://nivbook.co.il/product/%D7%9B%D7%95%D7%97-%D7%94%D7%97%D7%99%D7%99%D7%9D-%D7%94%D7%92%D7%90%D7%95%D7%9C%D7%94/\n🇺🇸 Like water to the sea, the soul seeks its way back. 🌊 https://www.amazon.com/Power-Life-Redemption-Eyal-Eden/dp/B0FQMB2W4M\n🇪🇸 Como el agua hacia el mar, el alma busca su regreso. ❤️ https://www.amazon.es/dp/B0GNHN9X1T",
-    "🇮🇱 האור הגנוז מחכה לאלו שמעזים להביט פנימה. 🕯️ https://nivbook.co.il/product/%D7%9B%D7%95%D7%97-%D7%94%D7%97%D7%99%D7%99%D7%9D-%D7%94%D7%92%D7%90%D7%95%D7%9C%D7%94/\n🇺🇸 The hidden light awaits those who dare to look within. 🕯️ https://www.amazon.com/Power-Life-Redemption-Eyal-Eden/dp/B0FQMB2W4M\n🇪🇸 La luz oculta espera a quienes miran hacia adentro. ❤️ https://www.amazon.es/dp/B0GNHN9X1T",
-    "🇮🇱 ירושלים היא שער רוחני לאיחוד העולמות. 🏰 https://nivbook.co.il/product/%D7%9B%D7%95%D7%97-%D7%94%D7%97%D7%99%D7%99%D7%9D-%D7%94%D7%92%D7%90%D7%95%D7%9C%D7%94/\n🇺🇸 Jerusalem is a spiritual gate for the union of worlds. 🏰 https://www.amazon.com/Power-Life-Redemption-Eyal-Eden/dp/B0FQMB2W4M\n🇪🇸 Jerusalén es una puerta para la unión de mundos. ❤️ https://www.amazon.es/dp/B0GNHN9X1T",
-    "🇮🇱 אהבה היא האנרגיה שהקימה את העולם. ❤️ https://nivbook.co.il/product/%D7%9B%D7%95%D7%97-%D7%94%D7%97%D7%99%D7%99%D7%9D-%D7%94%D7%92%D7%90%D7%95%D7%9C%D7%94/\n🇺🇸 Love is the energy that built the world. ❤️ https://www.amazon.com/Power-Life-Redemption-Eyal-Eden/dp/B0FQMB2W4M\n🇪🇸 El amor es la energía que construyó el mundo. ❤️ https://www.amazon.es/dp/B0GNHN9X1T",
-    "🇮🇱 הבורא מדבר אליכם דרך השקט. האם אתם מקשיבים? 🤫 https://nivbook.co.il/product/%D7%9B%D7%95%D7%97-%D7%94%D7%97%D7%99%D7%99%D7%9D-%D7%9ה%D7%92%D7%90%D7%95%D7%9C%D7%94/\n🇺🇸 The Creator speaks through the silence. 🌌 https://www.amazon.com/Power-Life-Redemption-Eyal-Eden/dp/B0FQMB2W4M\n🇪🇸 El Creador te habla a través del silencio. ❤️ https://www.amazon.es/dp/B0GNHN9X1T",
-    "🇮🇱 לכל נשמה יש תפקיד ייחודי בתיקון העולם. ✨ https://nivbook.co.il/product/%D7%9B%D7%95%D7%97-%D7%9ה%D7%97%D7%99%D7%99%D7%9D-%D7%9ה%D7%92%D7%90%D7%95%D7%9C%D7%94/\n🇺🇸 Every soul has a unique role in repairing the world. ✨ https://www.amazon.com/Power-Life-Redemption-Eyal-Eden/dp/B0FQMB2W4M\n🇪🇸 Cada alma tiene un papel en la reparación del mundo. ❤️ https://www.amazon.es/dp/B0GNHN9X1T",
-    "🇮🇱 עולם חסד ייבנה. כל מעשה טוב מקרב את הגאולה. 🤝 https://nivbook.co.il/product/%D7%9B%D7%95%D7%97-%D7%9ה%D7%97%D7%99%D7%99%D7%9D-%D7%9ה%D7%92%D7%90%D7%95%D7%9C%D7%94/\n🇺🇸 A world of kindness. Every good deed brings redemption. 🤝 https://www.amazon.com/Power-Life-Redemption-Eyal-Eden/dp/B0FQMB2W4M\n🇪🇸 Un mundo de bondad acerca la redención. ❤️ https://www.amazon.es/dp/B0GNHN9X1T",
-    "🇮🇱 הגוף זמני, אבל האור שלכם נצחי. 🌟 https://nivbook.co.il/product/%D7%9B%D7%95%D7%97-%D7%9ה%D7%97%D7%99%D7%99%D7%9D-%D7%9ה%D7%92%D7%90%D7%95%D7%9C%D7%94/\n🇺🇸 The body is temporary, but your light is eternal. 🌟 https://www.amazon.com/Power-Life-Redemption-Eyal-Eden/dp/B0FQMB2W4M\n🇪🇸 El cuerpo es temporal, pero tu luz es eterna. ❤️ https://www.amazon.es/dp/B0GNHN9X1T",
-    "🇮🇱 השכינה שוכנת בכל מקום שבו יש אהבה ואמת. 🕊️ https://nivbook.co.il/product/%D7%9B%D7%95%D7%97-%D7%9ה%D7%97%D7%99%D7%99%D7%9D-%D7%9ה%D7%92%D7%90%D7%95%D7%9C%D7%94/\n🇺🇸 The Divine Presence dwells where there is love. 🕊️ https://www.amazon.com/Power-Life-Redemption-Eyal-Eden/dp/B0FQMB2W4M\n🇪🇸 La Presencia Divina mora donde hay amor. ❤️ https://www.amazon.es/dp/B0GNHN9X1T",
-    "🇮🇱 המוות הוא רק דלת לממלכה הבאה. המסע נמשך. 🚪 https://nivbook.co.il/product/%D7%9B%D7%95%D7%97-%D7%9ה%D7%97%D7%99%D7%99%D7%9D-%D7%9ה%D7%92%D7%90%D7%95%D7%9C%D7%94/\n🇺🇸 Death is only a door to the next kingdom. 🌌 https://www.amazon.com/Power-Life-Redemption-Eyal-Eden/dp/B0FQMB2W4M\n🇪🇸 La muerte es solo una puerta al siguiente reino. ❤️ https://www.amazon.es/dp/B0GNHN9X1T",
-    "🇮🇱 סיימנו חודש של גילויים, אבל הגאולה רק מתחילה. ✨ https://nivbook.co.il/product/%D7%9B%D7%95%D7%97-%D7%9ה%D7%97%D7%99%D7%99%D7%9D-%D7%9ה%D7%92%D7%90%D7%95%D7%9C%D7%94/\n🇺🇸 We finished a month of discoveries. Redemption begins. ✨ https://www.amazon.com/Power-Life-Redemption-Eyal-Eden/dp/B0FQMB2W4M\n🇪🇸 Terminamos un mes de descubrimientos. ❤️ https://www.amazon.es/dp/B0GNHN9X1T"
-]
+    "🇮🇱 האם אתם מוכנים למסע חזרה הביתה? ✨ https://nivbook.co.il/product/%D7%9B%D7%95%D7%97-%D7%94%D7%97%D7%99%D7%99%D7%9D-%D7%94%D7%92%D7%90%D7%95%D7%9C%D7%94/\n🇺🇸 Return home to your soul. 🌌 https://www.amazon.com/Power-Life-Redemption-Eyal-Eden/dp/B0FQMB2W4M\n🇪🇸 Regreso al origen del alma. ❤️ https://www.amazon.es/dp/B0GNHN9X1T",
+    "🇮🇱 מעבר לזמן ולמרחב, קיים שער לאור. ✨ https://nivbook.co.il/product/%D7%9B%D7%95%D7%97-%D7%94%D7%97%D7%99%D7%99%D7%9D-%D7%94%D7%92%D7%90%D7%95%D7%9C%D7%94/\n🇺🇸 Beyond time and space. 🌌 https://www.amazon.com/Power-Life-Redemption-Eyal-Eden/dp/B0FQMB2W4M\n🇪🇸 Más allá del tiempo y el espacio. ❤️ https://www.amazon.es/dp/B0GNHN9X1T"
+] # הוסף כאן את שאר ה-30 שנתתי לך קודם
 
 def post_daily():
     day_index = (datetime.now().day - 1) % len(messages)
     media_index = (datetime.now().day - 1) % len(media_links)
     
     url = "https://api.bufferapp.com/1/updates/create.json"
-    data = {
-        'access_token': TOKEN,
-        'profile_ids[]': PROFILE_IDS,
-        'text': messages[day_index],
-        'media[video]': media_links[media_index],
-        'shorten': 'false'
-    }
     
-    response = requests.post(url, data=data)
-    print(response.json())
+    # שליחה לכל פרופיל בנפרד כדי למנוע קריסה כללית
+    for profile_id in PROFILE_IDS:
+        data = {
+            'access_token': TOKEN,
+            'profile_ids[]': [profile_id],
+            'text': messages[day_index],
+            'media[video]': media_links[media_index],
+            'shorten': 'false'
+        }
+        
+        print(f"נסה לפרסם לפרופיל: {profile_id}")
+        response = requests.post(url, data=data)
+        
+        print(f"סטטוס שרת: {response.status_code}")
+        try:
+            print("תשובת Buffer:", response.json())
+        except:
+            print("שגיאה: השרת לא החזיר JSON. תוכן התשובה:")
+            print(response.text)
 
 if __name__ == "__main__":
     post_daily()
