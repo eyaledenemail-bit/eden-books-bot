@@ -1,13 +1,17 @@
 import requests
 
-# העתק את המפתח מהצילום שלך (זה שמופיע תחת eyaleden) והדבק כאן
+# העתק את המפתח החדש שמופיע תחת eyaleden בצילום המסך שלך והדבק כאן
 TOKEN = 'UF3XfWBgBQ6p28kcw91dKGNBJ_rPP_NSyVK2sPzkaTu'
 
-def get_profiles_graphql():
-    url = 'https://api.bufferapp.com/graphql'
-    headers = {'Authorization': f'Bearer {TOKEN}'}
+def get_ids_v2():
+    # הכתובת המדויקת למערכת ה-Beta החדשה
+    url = 'https://api.buffer.com/graphql'
+    headers = {
+        'Authorization': f'Bearer {TOKEN}',
+        'Content-Type': 'application/json'
+    }
     
-    # שאילתה בשפת GraphQL כדי לקבל את הפרופילים
+    # שאילתה לקבלת המזהים של הערוצים שלך
     query = """
     query {
       profiles {
@@ -18,7 +22,7 @@ def get_profiles_graphql():
     }
     """
     
-    print("--- בודק חיבור למערכת ה-GraphQL החדשה ---")
+    print("--- בודק חיבור למערכת ה-GraphQL (api.buffer.com) ---")
     try:
         response = requests.post(url, json={'query': query}, headers=headers)
         print(f"סטטוס שרת: {response.status_code}")
@@ -29,10 +33,10 @@ def get_profiles_graphql():
             for p in data['data']['profiles']:
                 print(f"רשת: {p['service']} | שם: {p['service_username']} | ID: {p['id']}")
         else:
-            print("שגיאה בתשובה מהשרת:", data)
+            print("שגיאה בתשובה:", data)
             
     except Exception as e:
         print(f"תקלה טכנית: {e}")
 
 if __name__ == "__main__":
-    get_profiles_graphql()
+    get_ids_v2()
