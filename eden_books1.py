@@ -2,8 +2,7 @@ import requests
 from datetime import datetime
 
 # --- הגדרות מערכת ---
-# הדבק כאן את המפתח שלך (זה שנגמר ב-kaTu)
-TOKEN = 'UF3XfWBgBQ6p28kcw91dKGNBJ_rPP_NSyVK2sPzkaTu' 
+TOKEN = 'כאן_מדביקים_את_המפתח' # המפתח שנגמר ב-kaTu
 
 CHANNEL_IDS = [
     '69a00b534be271803d6c88c4', # Facebook
@@ -11,27 +10,10 @@ CHANNEL_IDS = [
     '69a00cd24be271803d6c9595'  # Threads
 ]
 
-# --- בנק תמונות (JPG) ---
-# כרגע נשתמש בתמונת העטיפה מה-GitHub שלך כגיבוי
-image_links = [
-    "https://raw.githubusercontent.com/eyaledenemail-bit/eden-books-bot/main/cover.jpg"
-]
+# נשתמש בתמונה חיצונית סופר-יציבה לבדיקה
+STABLE_IMAGE = "https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=800&q=80"
 
-# --- בנק הודעות ל-30 יום (עברית, אנגלית, ספרדית) ---
-messages = [
-    "🇮🇱 האם אתם מוכנים למסע חזרה הביתה? ✨ https://tinyurl.com/233mcy6n/\n🇺🇸 Ready for the journey home? 🌌 https://www.amazon.com/Power-Life-Redemption-Eyal-Eden/dp/B0FQMB2W4M\n🇪🇸 ¿Listo para el viaje a casa? ❤️ https://www.amazon.es/dp/B0GNHN9X1T",
-    "🇮🇱 מעבר לזמן ולמרחב, קיים שער לאור. ✨\n🇺🇸 Beyond time and space, there is a gate to light. 🌌\n🇪🇸 Más allá del tiempo y el espacio, hay una puerta a la luz. ❤️",
-    "🇮🇱 הגיאומטריה המקודשת היא המפה של הלב. 🌸\n🇺🇸 Sacred geometry is the map of the heart. 🌸\n🇪🇸 La geometría sagrada es el mapa del corazón. ❤️"
-]
-# השלמה ל-30 יום במידה וחסר
-while len(messages) < 30:
-    messages.append(messages[0])
-
-def launch_image_campaign():
-    day = datetime.now().day
-    msg_idx = (day - 1) % len(messages)
-    img_idx = (day - 1) % len(image_links)
-    
+def post_diagnostic(channel_id, text, image_url=None):
     url = 'https://api.buffer.com/graphql'
     headers = {'Authorization': f'Bearer {TOKEN}', 'Content-Type': 'application/json'}
     
@@ -39,40 +21,47 @@ def launch_image_campaign():
     mutation CreatePost($input: CreatePostInput!) {
       createPost(input: $input) {
         __typename
-        ... on PostActionSuccess {
-          post { id }
-        }
+        ... on PostActionSuccess { post { id } }
       }
     }
     """
     
-    print(f"--- משגר קמפיין תמונות ליום {day} ---")
-    
-    for channel_id in CHANNEL_IDS:
-        variables = {
-            "input": {
-                "channelId": channel_id,
-                "text": messages[msg_idx],
-                "schedulingType": "automatic",
-                "mode": "shareNow",
-                "assets": {
-                    "images": [{"url": image_links[img_idx]}]
-                }
-            }
+    variables = {
+        "input": {
+            "channelId": channel_id,
+            "text": text,
+            "schedulingType": "automatic",
+            "mode": "shareNow"
         }
+    }
+    
+    if image_url:
+        variables["input"]["assets"] = {"images": [{"url": image_url}]}
         
-        try:
-            response = requests.post(url, json={'query': mutation, 'variables': variables}, headers=headers)
-            res_data = response.json()
-            result = res_data.get('data', {}).get('createPost', {})
-            
-            if result.get('__typename') == 'PostActionSuccess':
-                print(f"✅ הצלחה בערוץ {channel_id}!")
-            else:
-                print(f"❌ ערוץ {channel_id} נכשל. סטטוס: {result.get('__typename')}")
-                print(f"פרטים: {res_data}")
-        except Exception as e:
-            print(f"⚠️ שגיאה טכנית בערוץ {channel_id}: {e}")
+    response = requests.post(url, json={'query': mutation, 'variables': variables}, headers=headers)
+    return response.json()
+
+def run_diagnostic():
+    print(f"--- בדיקת מערכת סופית: יום {datetime.now().day} ---")
+    
+    for cid in CHANNEL_IDS:
+        print(f"\nבדיקת ערוץ {cid}:")
+        
+        # שלב א': בדיקת טקסט נקי
+        print(f" 1. מנסה טקסט בלבד...")
+        res_text = post_diagnostic(cid, "בדיקת טקסט - כוח החיים הגאולה ✨")
+        if res_text.get('data', {}).get('createPost', {}).get('__typename') == 'PostActionSuccess':
+            print(f" ✅ הצלחה בטקסט!")
+        else:
+            print(f" ❌ כישלון בטקסט: {res_text}")
+
+        # שלב ב': בדיקת תמונה יציבה
+        print(f" 2. מנסה תמונה יציבה...")
+        res_img = post_diagnostic(cid, "בדיקת תמונה - כוח החיים הגאולה 📖", STABLE_IMAGE)
+        if res_img.get('data', {}).get('createPost', {}).get('__typename') == 'PostActionSuccess':
+            print(f" ✅ הצלחה בתמונה!")
+        else:
+            print(f" ❌ כישלון בתמונה: {res_img}")
 
 if __name__ == "__main__":
-    launch_image_campaign()
+    run_diagnostic()
