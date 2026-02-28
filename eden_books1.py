@@ -11,21 +11,21 @@ CHANNEL_IDS = [
     '69a00cd24be271803d6c9595'  # Threads
 ]
 
-# --- בנק תמונות (קישורים לתמונות ה-JPG שלך) ---
-# כרגע שמתי את קישור עטיפת הספר כברירת מחדל, תוכל להוסיף כאן עוד קישורי JPG
+# --- בנק תמונות (JPG) ---
+# כרגע נשתמש בתמונת העטיפה מה-GitHub שלך כגיבוי
 image_links = [
-    "https://raw.githubusercontent.com/eyaledenemail-bit/eden-books-bot/main/cover.jpg",
-    "https://raw.githubusercontent.com/eyaledenemail-bit/eden-books-bot/main/cover.jpg" 
+    "https://raw.githubusercontent.com/eyaledenemail-bit/eden-books-bot/main/cover.jpg"
 ]
 
 # --- בנק הודעות ל-30 יום (עברית, אנגלית, ספרדית) ---
 messages = [
     "🇮🇱 האם אתם מוכנים למסע חזרה הביתה? ✨ https://tinyurl.com/233mcy6n/\n🇺🇸 Ready for the journey home? 🌌 https://www.amazon.com/Power-Life-Redemption-Eyal-Eden/dp/B0FQMB2W4M\n🇪🇸 ¿Listo para el viaje a casa? ❤️ https://www.amazon.es/dp/B0GNHN9X1T",
     "🇮🇱 מעבר לזמן ולמרחב, קיים שער לאור. ✨\n🇺🇸 Beyond time and space, there is a gate to light. 🌌\n🇪🇸 Más allá del tiempo y el espacio, hay una puerta a la luz. ❤️",
-    "🇮🇱 הגיאומטריה המקודשת היא המפה של הלב. 🌸\n🇺🇸 Sacred geometry is the map of the heart. 🌸\n🇪🇸 La geometría sagrada es el mapa del corazón. ❤️",
-    "🇮🇱 הזמן אינו אויב, הוא הכלי לגדילה. ⏳\n🇺🇸 Time is not an enemy, but a tool for growth. ⏳\n🇪🇸 El tiempo no es un enemigo, sino una herramienta de crecimiento. ❤️"
-    # הקוד ימשיך בסבב על הפוסטים האלו לאורך 30 יום
+    "🇮🇱 הגיאומטריה המקודשת היא המפה של הלב. 🌸\n🇺🇸 Sacred geometry is the map of the heart. 🌸\n🇪🇸 La geometría sagrada es el mapa del corazón. ❤️"
 ]
+# השלמה ל-30 יום במידה וחסר
+while len(messages) < 30:
+    messages.append(messages[0])
 
 def launch_image_campaign():
     day = datetime.now().day
@@ -39,7 +39,9 @@ def launch_image_campaign():
     mutation CreatePost($input: CreatePostInput!) {
       createPost(input: $input) {
         __typename
-        ... on PostActionSuccess { post { id } }
+        ... on PostActionSuccess {
+          post { id }
+        }
       }
     }
     """
@@ -54,3 +56,23 @@ def launch_image_campaign():
                 "schedulingType": "automatic",
                 "mode": "shareNow",
                 "assets": {
+                    "images": [{"url": image_links[img_idx]}]
+                }
+            }
+        }
+        
+        try:
+            response = requests.post(url, json={'query': mutation, 'variables': variables}, headers=headers)
+            res_data = response.json()
+            result = res_data.get('data', {}).get('createPost', {})
+            
+            if result.get('__typename') == 'PostActionSuccess':
+                print(f"✅ הצלחה בערוץ {channel_id}!")
+            else:
+                print(f"❌ ערוץ {channel_id} נכשל. סטטוס: {result.get('__typename')}")
+                print(f"פרטים: {res_data}")
+        except Exception as e:
+            print(f"⚠️ שגיאה טכנית בערוץ {channel_id}: {e}")
+
+if __name__ == "__main__":
+    launch_image_campaign()
