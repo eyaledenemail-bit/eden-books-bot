@@ -2,7 +2,7 @@ import requests
 from datetime import datetime
 
 # --- הגדרות מערכת ---
-TOKEN = 'כאן_מדביקים_את_המפתח' # המפתח שנגמר ב-kaTu
+TOKEN = 'UF3XfWBgBQ6p28kcw91dKGNBJ_rPP_NSyVK2sPzkaTu' # המפתח שנגמר ב-kaTu
 
 CHANNEL_IDS = [
     '69a00b534be271803d6c88c4', # Facebook
@@ -65,3 +65,4 @@ def run_diagnostic():
 
 if __name__ == "__main__":
     run_diagnostic()
+
