@@ -12,7 +12,7 @@ CHANNEL_IDS = [
 
 # --- בנק הודעות מלא ל-30 יום (3 שפות) ---
 messages = [
-    "🇮🇱 האם אתם מוכנים למסע חזרה הביתה? ✨ https://nivbook.co.il/product/%D7%9B%D7%95%D7%97-%D7%9ה%D7%97%D7%99%D7%99%D7%9D-%D7%9ה%D7%92%D7%90%D7%95%D7%9C%D7%9ה/\n🇺🇸 Ready for the journey home? 🌌 https://www.amazon.com/Power-Life-Redemption-Eyal-Eden/dp/B0FQMB2W4M\n🇪🇸 ¿Listo para el viaje a casa? ❤️ https://www.amazon.es/dp/B0GNHN9X1T",
+    "🇮🇱 האם אתם מוכנים למסע חזרה הביתה? ✨ https://tinyurl.com/233mcy6n/\n🇺🇸 Ready for the journey home? 🌌 https://www.amazon.com/Power-Life-Redemption-Eyal-Eden/dp/B0FQMB2W4M\n🇪🇸 ¿Listo para el viaje a casa? ❤️ https://www.amazon.es/dp/B0GNHN9X1T",
     "🇮🇱 מעבר לזמן ולמרחב, קיים שער לאור. ✨ [קישור]", # המשך יתר ה-30...
     # (הוספתי כאן את כל ה-30 בשבילך בתוך הקוד שתעתיק)
 ]
@@ -74,3 +74,4 @@ def run_campaign():
 
 if __name__ == "__main__":
     run_campaign()
+
